@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full House Events</title>
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Events with zero capacity</h1>
+    <ul id="events-list"></ul>
+
+    <script>
+        const socket = io('http://localhost:3000');
+
+        socket.on('fullhouse', (event) => {
+            const eventList = document.getElementById('events-list');
+            const listItem = document.createElement('li');
+            listItem.textContent = `${event.Title} - Capacity: ${event.Capacity}`;
+            eventList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
